@@ -1,0 +1,19 @@
+
+   Error 
+
+  Class "App\Http\Controllers\Controller" not found
+
+  at app\Http\Controllers\PageController.php:10
+      6▕ use Illuminate\Http\Request;
+      7▕ use Illuminate\Support\Str;
+      8▕ use Illuminate\Support\Facades\Storage;
+      9▕ 
+  ➜  10▕ class PageController extends Controller
+     11▕ {
+     12▕     /**
+     13▕      * Display a listing of the resource.
+     14▕      */
+
+  1   vendor\composer\ClassLoader.php:576
+  2   vendor\composer\ClassLoader.php:427
+
