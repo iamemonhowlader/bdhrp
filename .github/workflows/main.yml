@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - dev
+      - main
 name: 🚀 Deploy website on push
 jobs:
   web-deploy:
@@ -14,8 +14,8 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        server: ftp.*****.xyz
-        username: api@****.xyz
-        password: ${{ secrets.ftp_password }}
+        server: ftp.thesyndicates.team
+        username: jefferi@jefferi.thesyndicates.team
+        password: Password@432!
         port: 21
         protocol: "ftp"

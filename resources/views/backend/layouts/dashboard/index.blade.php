@@ -6,20 +6,10 @@
 
 @section('content')
     <div id="app-content">
-
-        <!-- Container fluid -->
         <div class="app-content-area">
-            <div class="bg-primary pt-10 pb-21 mt-n6 mx-n4"></div>
-            <div class="container-fluid mt-n22 ">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-12">
-                        <!-- Page header -->
-                        <div class="d-flex justify-content-between align-items-center mb-5">
-                            <div class="mb-2 mb-lg-0">
-                                <h3 class="mb-0 text-white">Dashboard Overview</h3>
-                            </div>
-                        </div>
-                    </div>
+            <div class="container-fluid px-4 pt-3 pb-5">
+                <div class="rounded-3 px-4 py-3 mb-4 text-white shadow-sm" style="background: linear-gradient(135deg, #624bff 0%, #4c3ce6 55%, #3d2db8 100%);">
+                    <h3 class="mb-0 fw-bold fs-4">Dashboard Overview</h3>
                 </div>
 
                 <!-- Stats Cards Row -->

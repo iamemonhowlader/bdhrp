@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
-class PageController extends Controller
+class PageController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -40,7 +41,14 @@ class PageController extends Controller
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'status' => 'required|in:draft,published,archived',
             'page_type' => 'nullable|string|max:50',
+            'show_in_nav' => 'nullable|boolean',
+            'nav_group' => 'nullable|string|max:64',
+            'nav_label' => 'nullable|string|max:255',
+            'nav_sort_order' => 'nullable|integer|min:0',
         ]);
+
+        $validated['show_in_nav'] = $request->boolean('show_in_nav');
+        $validated['nav_sort_order'] = $validated['nav_sort_order'] ?? 0;
 
         if (empty($validated['slug'])) {
             $validated['slug'] = Str::slug($validated['title']);
@@ -58,7 +66,7 @@ class PageController extends Controller
 
         Page::create($validated);
 
-        return redirect()->route('admin.pages.index')->with('success', 'Page created successfully.');
+        return redirect()->route('admin.pages.index')->with('t-success', 'Page created successfully.');
     }
 
     /**
@@ -83,7 +91,14 @@ class PageController extends Controller
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'status' => 'required|in:draft,published,archived',
             'page_type' => 'nullable|string|max:50',
+            'show_in_nav' => 'nullable|boolean',
+            'nav_group' => 'nullable|string|max:64',
+            'nav_label' => 'nullable|string|max:255',
+            'nav_sort_order' => 'nullable|integer|min:0',
         ]);
+
+        $validated['show_in_nav'] = $request->boolean('show_in_nav');
+        $validated['nav_sort_order'] = $validated['nav_sort_order'] ?? 0;
 
         $validated['slug'] = Str::slug($validated['slug']);
 
@@ -102,7 +117,7 @@ class PageController extends Controller
 
         $page->update($validated);
 
-        return redirect()->route('admin.pages.index')->with('success', 'Page updated successfully.');
+        return redirect()->route('admin.pages.index')->with('t-success', 'Page updated successfully.');
     }
 
     /**
@@ -115,6 +130,6 @@ class PageController extends Controller
         }
         $page->delete();
 
-        return redirect()->route('admin.pages.index')->with('success', 'Page deleted successfully.');
+        return redirect()->route('admin.pages.index')->with('t-success', 'Page deleted successfully.');
     }
 }

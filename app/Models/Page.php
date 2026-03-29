@@ -21,15 +21,31 @@ class Page extends Model
         'featured_image',
         'status',
         'page_type',
-        'published_at'
+        'published_at',
+        'show_in_nav',
+        'nav_group',
+        'nav_label',
+        'nav_sort_order',
     ];
 
     protected $casts = [
         'published_at' => 'datetime',
+        'show_in_nav' => 'boolean',
+        'nav_sort_order' => 'integer',
     ];
 
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id');
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('status', 'published')->whereNotNull('published_at');
+    }
+
+    public function scopeInNavigation($query)
+    {
+        return $query->published()->where('show_in_nav', true)->orderBy('nav_sort_order');
     }
 }

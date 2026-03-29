@@ -3,30 +3,16 @@
 @section('title', 'Edit Page - ' . env('APP_NAME'))
 
 @section('content')
-<div id="app-content">
-    <div class="app-content-area">
-        <div class="bg-primary pt-10 pb-21 mt-n6 mx-n4"></div>
-        <div class="container-fluid mt-n22 ">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-12">
-                    <div class="d-flex justify-content-between align-items-center mb-5">
-                        <div class="mb-2 mb-lg-0">
-                            <h3 class="mb-0 text-white">Edit CMS Page</h3>
-                            <p class="text-white-50 mb-0">Update static page content</p>
-                        </div>
-                        <div>
-                            <a href="{{ route('admin.pages.index') }}" class="btn btn-outline-white text-white btn-sm px-4 rounded-pill shadow-sm">
-                                <i class="bi bi-arrow-left me-1"></i> Back
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <div class="card shadow-sm border-0 rounded-3">
-                        <div class="card-body p-5">
+@include('backend.partials.cms-shell-start')
+<div class="row">
+    <div class="col-12">
+        @include('backend.partials.cms-header', [
+            'title' => 'Edit CMS Page',
+            'subtitle' => 'Update static page content',
+            'backRoute' => route('admin.pages.index', [], false),
+        ])
+        <div class="card cms-card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
                             <form action="{{ route('admin.pages.update', $page) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
@@ -90,6 +76,26 @@
                                                 <label class="form-label text-muted">Page Type</label>
                                                 <input type="text" name="page_type" class="form-control form-control-sm" value="{{ old('page_type', $page->page_type) }}">
                                             </div>
+
+                                            <div class="mt-4 pt-3 border-top">
+                                                <label class="form-label fw-bold text-dark"><i class="bi bi-list-ul me-1"></i> Site navigation</label>
+                                                <div class="form-check mt-2">
+                                                    <input class="form-check-input" type="checkbox" name="show_in_nav" value="1" id="show_in_nav" @checked(old('show_in_nav', $page->show_in_nav))>
+                                                    <label class="form-check-label" for="show_in_nav">Show in public navbar</label>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <label class="form-label text-muted small">Nav group</label>
+                                                    <input type="text" name="nav_group" class="form-control form-control-sm" value="{{ old('nav_group', $page->nav_group) }}">
+                                                </div>
+                                                <div class="mt-2">
+                                                    <label class="form-label text-muted small">Nav label override</label>
+                                                    <input type="text" name="nav_label" class="form-control form-control-sm" value="{{ old('nav_label', $page->nav_label) }}">
+                                                </div>
+                                                <div class="mt-2">
+                                                    <label class="form-label text-muted small">Nav order</label>
+                                                    <input type="number" name="nav_sort_order" class="form-control form-control-sm" value="{{ old('nav_sort_order', $page->nav_sort_order) }}" min="0">
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="mb-4">
@@ -110,12 +116,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
+</div>
+@include('backend.partials.cms-shell-end')
 @endsection

@@ -38,6 +38,11 @@
         <!-- ===============================================-->
         <!--content-->
         <!-- ===============================================-->
+        @if ($errors->any() || session('t-error'))
+            <div class="container-fluid px-4 pt-2">
+                @include('backend.partials.flash-alerts')
+            </div>
+        @endif
         @yield('content')
 
     </main>

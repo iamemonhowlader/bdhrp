@@ -4,7 +4,7 @@
     <div class="navbar-vertical navbar nav-dashboard">
         <div class="h-100" data-simplebar>
             <!-- Brand logo -->
-            <a class="navbar-brand text-primary fw-bold" href="{{ route('dashboard') ?? '#' }}">
+            <a class="navbar-brand text-primary fw-bold" href="{{ route('dashboard', [], false) }}">
                <i class="bi bi-shield-check text-primary me-2"></i> BDHRP Admin
             </a>
             
@@ -13,8 +13,8 @@
 
                 <!-- MAIN DASHBOARD -->
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active': '' }}" href="{{ route('dashboard') ?? '#' }}">
-                        <i data-feather="home" class="nav-icon me-2 icon-xxs"></i> Dashboard
+                    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active': '' }}" href="{{ route('dashboard', [], false) }}">
+                        <i class="bi bi-house-door nav-icon me-2"></i> Dashboard
                     </a>
                 </li>
 
@@ -25,48 +25,57 @@
                     <div class="navbar-heading mt-3">Content Management</div>
                 </li>
 
-                <!-- News & Articles -->
+                <!-- News & Blog (flat links — always visible; avoids hidden submenu + # in URL from collapse toggles) -->
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/news*') ? '' : 'collapsed' }}" href="#!" data-bs-toggle="collapse" data-bs-target="#navNews" aria-expanded="{{ request()->is('admin/news*') ? 'true' : 'false' }}" aria-controls="navNews">
-                        <i data-feather="file-text" class="nav-icon me-2 icon-xxs"></i> News & Blog
+                    <div class="navbar-heading mt-2">News & Blog</div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.categories*') ? 'active' : '' }}" href="{{ route('admin.categories.index', [], false) }}">
+                        <i class="bi bi-folder nav-icon me-2"></i> Categories
                     </a>
-                    <div id="navNews" class="collapse {{ request()->is('admin/news*') ? 'show' : '' }}" data-bs-parent="#sideNavbar">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/news-categories*') ? 'active' : '' }}" href="#">Categories</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/news-tags*') ? 'active' : '' }}" href="#">Tags</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/news-articles*') ? 'active' : '' }}" href="#">All Articles</a>
-                            </li>
-                        </ul>
-                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.tags*') ? 'active' : '' }}" href="{{ route('admin.tags.index', [], false) }}">
+                        <i class="bi bi-tag nav-icon me-2"></i> Tags
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.articles*') ? 'active' : '' }}" href="{{ route('admin.articles.index', [], false) }}">
+                        <i class="bi bi-file-text nav-icon me-2"></i> All Articles
+                    </a>
                 </li>
 
                 <!-- CMS Pages -->
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/pages*') ? 'active': '' }}" href="{{ route('admin.pages.index') }}">
-                        <i data-feather="layout" class="nav-icon me-2 icon-xxs"></i> Static Pages
+                    <a class="nav-link {{ request()->routeIs('admin.pages*') ? 'active': '' }}" href="{{ route('admin.pages.index', [], false) }}">
+                        <i class="bi bi-layout-text-window nav-icon me-2"></i> Static Pages
                     </a>
                 </li>
 
-                <!-- Gallery -->
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/gallery*') ? '' : 'collapsed' }}" href="#!" data-bs-toggle="collapse" data-bs-target="#navGallery" aria-expanded="{{ request()->is('admin/gallery*') ? 'true' : 'false' }}" aria-controls="navGallery">
-                        <i data-feather="image" class="nav-icon me-2 icon-xxs"></i> Gallery Center
+                    <a class="nav-link {{ request()->routeIs('admin.site-settings*') ? 'active' : '' }}" href="{{ route('admin.site-settings.edit', [], false) }}">
+                        <i class="bi bi-palette nav-icon me-2"></i> Site &amp; homepage
                     </a>
-                    <div id="navGallery" class="collapse {{ request()->is('admin/gallery*') ? 'show' : '' }}" data-bs-parent="#sideNavbar">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/gallery-albums*') ? 'active' : '' }}" href="#">Albums</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/gallery-items*') ? 'active' : '' }}" href="#">Photos</a>
-                            </li>
-                        </ul>
-                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.menu-items*') ? 'active' : '' }}" href="{{ route('admin.menu-items.index', ['zone' => 'about'], false) }}">
+                        <i class="bi bi-list-ul nav-icon me-2"></i> Frontend menus
+                    </a>
+                </li>
+
+                <!-- Gallery Center -->
+                <li class="nav-item">
+                    <div class="navbar-heading mt-2">Gallery Center</div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.galleries*') && !request()->routeIs('admin.galleries.photos*') ? 'active' : '' }}" href="{{ route('admin.galleries.index', [], false) }}">
+                        <i class="bi bi-images nav-icon me-2"></i> Albums
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.gallery-photos.library') ? 'active' : '' }}" href="{{ route('admin.gallery-photos.library', [], false) }}">
+                        <i class="bi bi-camera nav-icon me-2"></i> All photos
+                    </a>
                 </li>
 
                 <!-- ========================== -->
@@ -219,7 +228,7 @@
                     <div id="navAuth" class="collapse {{ request()->is('admin/system/users*') ? 'show' : '' }}" data-bs-parent="#sideNavbar">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/system/users') ? 'active' : '' }}" href="{{ route('admin.user.index') ?? '#' }}">Users</a>
+                                <a class="nav-link {{ request()->is('admin/system/users') ? 'active' : '' }}" href="{{ route('admin.user.index', [], false) }}">Users</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->is('admin/system/roles') ? 'active' : '' }}" href="#">Roles & Permissions</a>
@@ -239,7 +248,7 @@
                                 <a class="nav-link {{ request()->is('admin/system/config/general') ? 'active' : '' }}" href="#">General Setup</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->is('v1.setting.mail.show') ? 'active' : '' }}" href="{{ route('v1.setting.mail.show') ?? '#' }}">Email Server Setup</a>
+                                <a class="nav-link {{ request()->is('v1.setting.mail.show') ? 'active' : '' }}" href="{{ route('v1.setting.mail.show', [], false) }}">Email Server Setup</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->is('admin/system/config/financials') ? 'active' : '' }}" href="#">Financial Reports</a>
@@ -290,6 +299,12 @@
     width: 18px;
     height: 18px;
     color: inherit;
+}
+.nav-dashboard .nav-link .bi.nav-icon {
+    width: auto;
+    height: auto;
+    font-size: 1.1rem;
+    line-height: 1;
 }
 .nav-dashboard .nav-link[data-bs-toggle="collapse"]::after {
     display: inline-block;
