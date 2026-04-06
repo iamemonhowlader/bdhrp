@@ -48,6 +48,12 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('admin/articles_videos*') ? 'active' : '' }}" href="{{ route('admin.articles_videos.index', [], false) }}">
+                        <i class="bi bi-play-btn nav-icon"></i> Video Reports
+                    </a>
+                </li>
+
                 <!-- PEOPLE & ORG -->
                 <li class="nav-item">
                     <div class="navbar-heading">Organization</div>

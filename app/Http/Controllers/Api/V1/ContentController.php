@@ -11,6 +11,7 @@ use App\Models\MenuItem;
 use App\Models\Page;
 use App\Models\SiteSetting;
 use App\Models\Tag;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class ContentController extends Controller
@@ -84,10 +85,13 @@ class ContentController extends Controller
             })->values()->all();
         }
 
+        $videos = Video::where('status', true)->orderBy('sort_order')->orderByDesc('created_at')->get();
+
         return Helper::success(200, null, [
             'settings' => $settings,
             'menus' => $menus,
             'page_navigation' => $pageNavigation,
+            'videos' => $videos,
         ]);
     }
 
