@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 
 // auth only (not verified): email verification should not block CMS; users implement MustVerifyEmail but
@@ -12,4 +13,6 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     Route::get('about/edit', [AboutController::class, 'edit'])->name('about.edit');
     Route::put('about', [AboutController::class, 'update'])->name('about.update');
+
+    Route::resource('articles', ArticleController::class)->names('articles');
 });

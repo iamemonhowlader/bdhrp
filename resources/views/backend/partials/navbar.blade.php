@@ -42,6 +42,12 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('admin/articles*') ? 'active' : '' }}" href="{{ route('admin.articles.index', [], false) }}">
+                        <i class="bi bi-newspaper nav-icon"></i> Latest News
+                    </a>
+                </li>
+
                 <!-- PEOPLE & ORG -->
                 <li class="nav-item">
                     <div class="navbar-heading">Organization</div>

@@ -124,7 +124,7 @@ class ContentController extends Controller
     public function article(string $slug)
     {
         $article = Article::query()
-            ->with(['categories:id,name,slug', 'tags:id,name,slug', 'author:id,name'])
+            ->with(['categories:id,name,slug', 'tags:id,name,slug', 'author:id,first_name,last_name'])
             ->published()
             ->where('slug', $slug)
             ->firstOrFail();
@@ -306,7 +306,7 @@ class ContentController extends Controller
             'tags' => $a->tags->map(fn ($t) => $t->only(['id', 'name', 'slug']))->values(),
             'author' => $a->author ? [
                 'id' => $a->author->id,
-                'name' => $a->author->name ?? $a->author->email,
+                'name' => trim($a->author->first_name . ' ' . $a->author->last_name) ?: $a->author->email,
             ] : null,
         ];
     }
