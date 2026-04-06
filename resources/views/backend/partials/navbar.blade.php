@@ -54,6 +54,12 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('admin/districts*') ? 'active' : '' }}" href="{{ route('admin.districts.index', [], false) }}">
+                        <i class="bi bi-geo-alt nav-icon"></i> Bangladesh Geography
+                    </a>
+                </li>
+
                 <!-- PEOPLE & ORG -->
                 <li class="nav-item">
                     <div class="navbar-heading">Organization</div>

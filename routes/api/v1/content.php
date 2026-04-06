@@ -17,4 +17,6 @@ Route::prefix('v1')->group(function () {
     Route::get('galleries', [ContentController::class, 'galleries']);
     Route::get('galleries/{slug}', [ContentController::class, 'gallery']);
     Route::get('gallery-photos', [ContentController::class, 'galleryPhotos']);
+    Route::get('districts', [ContentController::class, 'districts']);
+    Route::get('districts/{slug}', [ContentController::class, 'district']);
 });

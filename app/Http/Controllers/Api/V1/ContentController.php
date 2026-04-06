@@ -12,6 +12,7 @@ use App\Models\Page;
 use App\Models\SiteSetting;
 use App\Models\Tag;
 use App\Models\Video;
+use App\Models\District;
 use Illuminate\Http\Request;
 
 class ContentController extends Controller
@@ -57,9 +58,6 @@ class ContentController extends Controller
         ]);
     }
 
-    /**
-     * Combined payload for the public React app: copy, menus, JSON blocks, and page navigation.
-     */
     public function bootstrap()
     {
         $settings = SiteSetting::allMapped();
@@ -172,7 +170,10 @@ class ContentController extends Controller
             ->where('status', 'published')
             ->orderBy('title')
             ->get()
-            ->map(fn ($p) => $this->transformPage($p));
+            ->map(function ($p) {
+                /** @var Page $p */
+                return $this->transformPage($p);
+            });
 
         return Helper::success(200, null, ['items' => $items]);
     }
@@ -289,6 +290,40 @@ class ContentController extends Controller
                 'per_page' => $paginator->perPage(),
                 'total' => $paginator->total(),
             ],
+        ]);
+    }
+
+    public function districts()
+    {
+        $items = District::where('is_active', true)->orderBy('name')->get()->map(fn($d) => [
+            'id' => $d->id,
+            'name' => $d->name,
+            'slug' => $d->slug,
+            'division' => $d->division,
+        ]);
+        return Helper::success(200, null, ['items' => $items]);
+    }
+
+    public function district(string $slug)
+    {
+        $district = District::where('slug', $slug)->where('is_active', true)->firstOrFail();
+        return Helper::success(200, null, [
+            'id' => $district->id,
+            'name' => $district->name,
+            'slug' => $district->slug,
+            'division' => $district->division,
+            'population' => $district->population,
+            'area' => $district->area,
+            'established' => $district->established,
+            'about_short' => $district->about_short,
+            'about_body' => $district->about_body,
+            'landmarks' => array_map(function($l) {
+                $img = $l['image'] ?? '';
+                if ($img !== '' && !str_starts_with($img, 'http')) {
+                    $img = $this->storageUrl($img);
+                }
+                return array_merge($l, ['image' => $img]);
+            }, is_array($district->landmarks) ? $district->landmarks : []),
         ]);
     }
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\HeroController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\DistrictController;
 use Illuminate\Support\Facades\Route;
 
 // auth only (not verified): email verification should not block CMS; users implement MustVerifyEmail but
@@ -17,4 +18,5 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     Route::resource('articles', ArticleController::class)->names('articles');
     Route::resource('articles_videos', VideoController::class)->names('articles_videos');
+    Route::resource('districts', DistrictController::class)->names('districts');
 });
