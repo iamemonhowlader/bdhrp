@@ -4,6 +4,8 @@ use App\Http\Controllers\Api\V1\ContentController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
+    Route::get('hero', [ContentController::class, 'hero']);
+    Route::get('about', [ContentController::class, 'about']);
     Route::get('bootstrap', [ContentController::class, 'bootstrap']);
     Route::get('articles', [ContentController::class, 'articles']);
     Route::get('articles/{slug}', [ContentController::class, 'article']);

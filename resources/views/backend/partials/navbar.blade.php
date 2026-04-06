@@ -1,328 +1,222 @@
 <div class="app-menu">
     <!-- Sidebar -->
-
-    <div class="navbar-vertical navbar nav-dashboard">
+    <div class="navbar-vertical navbar nav-dashboard border-end">
         <div class="h-100" data-simplebar>
-            <!-- Brand logo -->
-            <a class="navbar-brand text-primary fw-bold" href="{{ route('dashboard', [], false) }}">
-               <i class="bi bi-shield-check text-primary me-2"></i> BDHRP Admin
-            </a>
+            <!-- Brand Area -->
+            <div class="brand-area p-4 border-bottom mb-3">
+                <a class="navbar-brand p-0 m-0 border-0" href="{{ route('dashboard', [], false) }}" style="display: flex; align-items: center; gap: 0.75rem;">
+                   <div class="p-2 bg-white rounded-3 shadow-sm d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                       <i class="bi bi-shield-check text-primary" style="font-size: 1.4rem;"></i>
+                   </div>
+                   <span class="fw-bold text-white" style="font-size: 1.15rem; letter-spacing: 0.5px;">Jefferi Admin</span>
+                </a>
+                <div class="mt-3">
+                    <a href="/" target="_blank" class="btn btn-sm btn-glass w-100 py-1" style="font-size: 0.75rem; color: white; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2);">
+                        <i class="bi bi-box-arrow-up-right me-1"></i> Public Website
+                    </a>
+                </div>
+            </div>
             
-            <!-- Navbar nav -->
-            <ul class="navbar-nav flex-column" id="sideNavbar">
-
+            <ul class="navbar-nav flex-column px-2" id="sideNavbar">
                 <!-- MAIN DASHBOARD -->
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('dashboard') ? 'active': '' }}" href="{{ route('dashboard', [], false) }}">
-                        <i class="bi bi-house-door nav-icon me-2"></i> Dashboard
+                        <i class="bi bi-grid-1x2 nav-icon"></i> Dashboard
                     </a>
                 </li>
 
-                <!-- ========================== -->
-                <!-- CONTENT MANAGEMENT SECTION -->
-                <!-- ========================== -->
+                <!-- WEBSITE CONTENT -->
                 <li class="nav-item">
-                    <div class="navbar-heading mt-3">Content Management</div>
+                    <div class="navbar-heading">Website Editor</div>
                 </li>
 
-                <!-- News & Blog (flat links — always visible; avoids hidden submenu + # in URL from collapse toggles) -->
                 <li class="nav-item">
-                    <div class="navbar-heading mt-2">News & Blog</div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.categories*') ? 'active' : '' }}" href="{{ route('admin.categories.index', [], false) }}">
-                        <i class="bi bi-folder nav-icon me-2"></i> Categories
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.tags*') ? 'active' : '' }}" href="{{ route('admin.tags.index', [], false) }}">
-                        <i class="bi bi-tag nav-icon me-2"></i> Tags
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.articles*') ? 'active' : '' }}" href="{{ route('admin.articles.index', [], false) }}">
-                        <i class="bi bi-file-text nav-icon me-2"></i> All Articles
-                    </a>
-                </li>
-
-                <!-- CMS Pages -->
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.pages*') ? 'active': '' }}" href="{{ route('admin.pages.index', [], false) }}">
-                        <i class="bi bi-layout-text-window nav-icon me-2"></i> Static Pages
+                    <a class="nav-link {{ request()->routeIs('admin.hero.*') ? 'active' : '' }}" href="{{ route('admin.hero.edit', [], false) }}">
+                        <i class="bi bi-window-stack nav-icon"></i> Hero Management
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.site-settings*') ? 'active' : '' }}" href="{{ route('admin.site-settings.edit', [], false) }}">
-                        <i class="bi bi-palette nav-icon me-2"></i> Site &amp; homepage
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.menu-items*') ? 'active' : '' }}" href="{{ route('admin.menu-items.index', ['zone' => 'about'], false) }}">
-                        <i class="bi bi-list-ul nav-icon me-2"></i> Frontend menus
+                    <a class="nav-link {{ request()->routeIs('admin.about.*') ? 'active' : '' }}" href="{{ route('admin.about.edit', [], false) }}">
+                        <i class="bi bi-info-square nav-icon"></i> About Section
                     </a>
                 </li>
 
-                <!-- Gallery Center -->
+                <!-- PEOPLE & ORG -->
                 <li class="nav-item">
-                    <div class="navbar-heading mt-2">Gallery Center</div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.galleries*') && !request()->routeIs('admin.galleries.photos*') ? 'active' : '' }}" href="{{ route('admin.galleries.index', [], false) }}">
-                        <i class="bi bi-images nav-icon me-2"></i> Albums
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.gallery-photos.library') ? 'active' : '' }}" href="{{ route('admin.gallery-photos.library', [], false) }}">
-                        <i class="bi bi-camera nav-icon me-2"></i> All photos
-                    </a>
+                    <div class="navbar-heading">Organization</div>
                 </li>
 
-                <!-- ========================== -->
-                <!-- ORGANIZATION SECTION       -->
-                <!-- ========================== -->
                 <li class="nav-item">
-                    <div class="navbar-heading mt-3">Organization</div>
-                </li>
-
-                <!-- Committees Structure -->
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/org*') ? '' : 'collapsed' }}" href="#!" data-bs-toggle="collapse" data-bs-target="#navOrg" aria-expanded="{{ request()->is('admin/org*') ? 'true' : 'false' }}" aria-controls="navOrg">
-                        <i data-feather="map-pin" class="nav-icon me-2 icon-xxs"></i> Regional Setup
+                    <a class="nav-link collapsed" href="#!" data-bs-toggle="collapse" data-bs-target="#navOrg" aria-expanded="false">
+                        <i class="bi bi-layers nav-icon"></i> Regional Hub
                     </a>
-                    <div id="navOrg" class="collapse {{ request()->is('admin/org*') ? 'show' : '' }}" data-bs-parent="#sideNavbar">
+                    <div id="navOrg" class="collapse" data-bs-parent="#sideNavbar">
                         <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/org/divisions*') ? 'active' : '' }}" href="#">Divisions</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/org/committees*') ? 'active' : '' }}" href="#">Committees</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/org/districts*') ? 'active' : '' }}" href="#">Districts</a>
-                            </li>
+                            <li class="nav-item"><a class="nav-link" href="#">Divisions</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Committees</a></li>
                         </ul>
                     </div>
                 </li>
 
-                <!-- Events & Activities -->
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/events*') ? 'active': '' }}" href="#">
-                        <i data-feather="calendar" class="nav-icon me-2 icon-xxs"></i> Activities & Events
+                    <a class="nav-link collapsed" href="#!" data-bs-toggle="collapse" data-bs-target="#navTeam" aria-expanded="false">
+                        <i class="bi bi-people nav-icon"></i> Team Center
                     </a>
-                </li>
-                
-                <!-- Topics -->
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/topics*') ? 'active': '' }}" href="#">
-                        <i data-feather="hash" class="nav-icon me-2 icon-xxs"></i> Topics Framework
-                    </a>
-                </li>
-
-                <!-- ========================== -->
-                <!-- PEOPLE & ENGAGEMENT        -->
-                <!-- ========================== -->
-                <li class="nav-item">
-                    <div class="navbar-heading mt-3">People & Engagement</div>
-                </li>
-
-                <!-- Team & Members -->
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/team*') ? '' : 'collapsed' }}" href="#!" data-bs-toggle="collapse" data-bs-target="#navTeam" aria-expanded="{{ request()->is('admin/team*') ? 'true' : 'false' }}" aria-controls="navTeam">
-                        <i data-feather="users" class="nav-icon me-2 icon-xxs"></i> Team & Members
-                    </a>
-                    <div id="navTeam" class="collapse {{ request()->is('admin/team*') ? 'show' : '' }}" data-bs-parent="#sideNavbar">
+                    <div id="navTeam" class="collapse" data-bs-parent="#sideNavbar">
                         <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/team/roles*') ? 'active' : '' }}" href="#">People Roles</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/team/people*') ? 'active' : '' }}" href="#">All People</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/team/committee-members*') ? 'active' : '' }}" href="#">Committee Leads</a>
-                            </li>
+                            <li class="nav-item"><a class="nav-link" href="#">All Members</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Member Roles</a></li>
                         </ul>
                     </div>
                 </li>
 
-                <!-- Donations & Donors -->
+                <!-- SYSTEM SETUP -->
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/fundraising*') ? '' : 'collapsed' }}" href="#!" data-bs-toggle="collapse" data-bs-target="#navDonations" aria-expanded="{{ request()->is('admin/fundraising*') ? 'true' : 'false' }}" aria-controls="navDonations">
-                        <i data-feather="heart" class="nav-icon me-2 icon-xxs"></i> Fundraising
-                    </a>
-                    <div id="navDonations" class="collapse {{ request()->is('admin/fundraising*') ? 'show' : '' }}" data-bs-parent="#sideNavbar">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/fundraising/donors*') ? 'active' : '' }}" href="#">Donors</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/fundraising/transactions*') ? 'active' : '' }}" href="#">Transactions</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/fundraising/legacies*') ? 'active' : '' }}" href="#">Legacy Giving</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <div class="navbar-heading">Configuration</div>
                 </li>
 
-                <!-- Newsletter -->
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/newsletter*') ? '' : 'collapsed' }}" href="#!" data-bs-toggle="collapse" data-bs-target="#navNewsletter" aria-expanded="{{ request()->is('admin/newsletter*') ? 'true' : 'false' }}" aria-controls="navNewsletter">
-                        <i data-feather="send" class="nav-icon me-2 icon-xxs"></i> Newsletter
-                    </a>
-                    <div id="navNewsletter" class="collapse {{ request()->is('admin/newsletter*') ? 'show' : '' }}" data-bs-parent="#sideNavbar">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/newsletter/subscribers*') ? 'active' : '' }}" href="#">Subscribers</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/newsletter/issues*') ? 'active' : '' }}" href="#">Issues & Mailer</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <!-- Careers -->
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/careers*') ? '' : 'collapsed' }}" href="#!" data-bs-toggle="collapse" data-bs-target="#navCareers" aria-expanded="{{ request()->is('admin/careers*') ? 'true' : 'false' }}" aria-controls="navCareers">
-                        <i data-feather="briefcase" class="nav-icon me-2 icon-xxs"></i> Careers
-                    </a>
-                    <div id="navCareers" class="collapse {{ request()->is('admin/careers*') ? 'show' : '' }}" data-bs-parent="#sideNavbar">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/careers/jobs*') ? 'active' : '' }}" href="#">Job Listings</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/careers/applications*') ? 'active' : '' }}" href="#">Applications</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <!-- External Entities (Partners, Contact) -->
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/partners*') ? 'active': '' }}" href="#">
-                        <i data-feather="link" class="nav-icon me-2 icon-xxs"></i> Partners
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/contact-messages*') ? 'active': '' }}" href="#">
-                        <i data-feather="message-square" class="nav-icon me-2 icon-xxs"></i> Messages (Inbox)
-                    </a>
-                </li>
-
-
-                <!-- ========================== -->
-                <!-- SYSTEM SETTINGS            -->
-                <!-- ========================== -->
-                <li class="nav-item">
-                    <div class="navbar-heading mt-3">System & Settings</div>
-                </li>
-
-                <!-- Admin Users & Roles -->
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/system/users*') ? '' : 'collapsed' }}" href="#!" data-bs-toggle="collapse" data-bs-target="#navAuth" aria-expanded="{{ request()->is('admin/system/users*') ? 'true' : 'false' }}" aria-controls="navAuth">
-                        <i data-feather="shield" class="nav-icon me-2 icon-xxs"></i> Admin Access
+                    <a class="nav-link {{ request()->is('admin/system/users*') ? '' : 'collapsed' }}" href="#!" data-bs-toggle="collapse" data-bs-target="#navAuth" aria-expanded="{{ request()->is('admin/system/users*') ? 'true' : 'false' }}">
+                        <i class="bi bi-shield-lock nav-icon"></i> Access Control
                     </a>
                     <div id="navAuth" class="collapse {{ request()->is('admin/system/users*') ? 'show' : '' }}" data-bs-parent="#sideNavbar">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/system/users') ? 'active' : '' }}" href="{{ route('admin.user.index', [], false) }}">Users</a>
+                                <a class="nav-link {{ request()->is('admin/system/users') ? 'active' : '' }}" href="{{ route('admin.user.index', [], false) }}">Admin Users</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/system/roles') ? 'active' : '' }}" href="#">Roles & Permissions</a>
+                                <a class="nav-link" href="#">Permissions</a>
                             </li>
                         </ul>
                     </div>
                 </li>
 
-                <!-- Global Config -->
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/system/config*') ? '' : 'collapsed' }}" href="#!" data-bs-toggle="collapse" data-bs-target="#navSettings" aria-expanded="{{ request()->is('admin/system/config*') ? 'true' : 'false' }}" aria-controls="navSettings">
-                        <i data-feather="settings" class="nav-icon me-2 icon-xxs"></i> Settings
+                    <a class="nav-link {{ request()->is('admin/system/config*') ? '' : 'collapsed' }}" href="#!" data-bs-toggle="collapse" data-bs-target="#navSettings" aria-expanded="{{ request()->is('admin/system/config*') ? 'true' : 'false' }}">
+                        <i class="bi bi-gear nav-icon"></i> Global Settings
                     </a>
                     <div id="navSettings" class="collapse {{ request()->is('admin/system/config*') ? 'show' : '' }}" data-bs-parent="#sideNavbar">
                         <ul class="nav flex-column">
+                            <li class="nav-item"><a class="nav-link" href="#">General Config</a></li>
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/system/config/general') ? 'active' : '' }}" href="#">General Setup</a>
+                                <a class="nav-link {{ request()->is('v1.setting.mail.show') ? 'active' : '' }}" href="{{ route('v1.setting.mail.show', [], false) }}">Mail Server</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('v1.setting.mail.show') ? 'active' : '' }}" href="{{ route('v1.setting.mail.show', [], false) }}">Email Server Setup</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/system/config/financials') ? 'active' : '' }}" href="#">Financial Reports</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/system/config/social') ? 'active' : '' }}" href="#">Social Media Links</a>
-                            </li>
+                            <li class="nav-item"><a class="nav-link" href="#">Social Links</a></li>
                         </ul>
                     </div>
                 </li>
 
-                <li class="nav-item pb-4"></li>
+                <li class="nav-item pb-5"></li>
             </ul>
         </div>
     </div>
 </div>
 
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-/* Custom Navbar Styling to make it more elegant */
+/* Modern & Smart Sidebar Styling */
+:root {
+    --side-primary: #6366f1;
+    --side-gradient: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    --side-hover-bg: #f8fafc;
+    --side-active-bg: rgba(99, 102, 241, 0.08);
+    --side-text: #475569;
+    --side-text-bold: #1e293b;
+    --side-font: 'Plus Jakarta Sans', sans-serif;
+}
+
+.nav-dashboard {
+    background-color: #ffffff;
+    border-right: 1px solid #f1f5f9;
+    font-family: var(--side-font);
+}
+
+.nav-dashboard .brand-area {
+    background: var(--side-gradient);
+    box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.1);
+}
+
 .nav-dashboard .navbar-heading {
     font-size: 0.7rem;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #a0aec0;
-    padding: 0 1.5rem 0.5rem;
-    margin-bottom: 0;
+    letter-spacing: 0.12em;
+    color: #94a3b8;
+    padding: 1.75rem 1.25rem 0.5rem;
 }
+
 .nav-dashboard .nav-link {
-    font-weight: 500;
-    font-size: 0.9rem;
-    padding: 0.6rem 1.5rem;
-    color: #4a5568;
-    transition: all 0.3s ease;
-    border-radius: 0.375rem;
-    margin: 0.1rem 0.8rem;
-}
-.nav-dashboard .nav-link:hover {
-    background-color: #f7fafc;
-    color: #3182ce;
-}
-.nav-dashboard .nav-link.active {
-    background-color: rgba(49, 130, 206, 0.1);
-    color: #2b6cb0;
     font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.25rem;
+    color: var(--side-text);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px;
+    margin: 0.2rem 0.75rem;
+    display: flex;
+    align-items: center;
 }
+
+.nav-dashboard .nav-link:hover {
+    background-color: var(--side-hover-bg);
+    color: var(--side-primary);
+    transform: translateX(4px);
+}
+
+.nav-dashboard .nav-link.active {
+    background-color: var(--side-active-bg);
+    color: var(--side-primary);
+    font-weight: 700;
+}
+
+.nav-dashboard .nav-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    height: 20px;
+    width: 4px;
+    background: var(--side-primary);
+    border-radius: 0 4px 4px 0;
+}
+
 .nav-dashboard .nav-link .nav-icon {
-    width: 18px;
-    height: 18px;
-    color: inherit;
+    font-size: 1.15rem;
+    margin-right: 0.85rem;
+    transition: transform 0.3s ease;
 }
-.nav-dashboard .nav-link .bi.nav-icon {
-    width: auto;
-    height: auto;
-    font-size: 1.1rem;
-    line-height: 1;
+
+.nav-dashboard .nav-link:hover .nav-icon {
+    transform: scale(1.1);
 }
+
 .nav-dashboard .nav-link[data-bs-toggle="collapse"]::after {
     display: inline-block;
-    width: 1em;
-    height: 1em;
+    width: 0.8rem;
+    height: 0.8rem;
     content: "";
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a0aec0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
     margin-left: auto;
-    transition: transform .2s ease;
+    transition: transform .25s ease;
 }
+
 .nav-dashboard .nav-link[data-bs-toggle="collapse"][aria-expanded="true"]::after {
     transform: rotate(180deg);
 }
+
 .nav-dashboard .collapse .nav-item .nav-link {
-    padding-left: 3rem;
+    padding-left: 3.25rem;
     font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* Custom Scrollbar */
+.simplebar-scrollbar:before {
+    background: #e2e8f0 !important;
+    width: 4px;
 }
 </style>

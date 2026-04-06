@@ -7,17 +7,19 @@
                 <p class="text-white mb-0 small opacity-90">{{ $subtitle }}</p>
             @endisset
         </div>
-        <div class="d-flex gap-2 flex-shrink-0">
-            @isset($backRoute)
-                <a href="{{ $backRoute }}" class="btn btn-outline-light btn-sm px-3 rounded-pill shadow-sm">
-                    <i class="bi bi-arrow-left me-1"></i> Back
-                </a>
-            @endisset
-            @isset($actionRoute, $actionLabel)
-                <a href="{{ $actionRoute }}" class="btn btn-light text-primary fw-bold btn-sm px-3 rounded-pill shadow-sm">
-                    <i class="bi bi-plus-lg me-1"></i> {{ $actionLabel }}
-                </a>
-            @endisset
-        </div>
+        @if(isset($backRoute) || (isset($actionRoute) && isset($actionLabel)))
+            <div class="d-flex gap-2 flex-shrink-0">
+                @isset($backRoute)
+                    <a href="{{ $backRoute }}" class="btn btn-outline-light btn-sm px-3 rounded-pill shadow-sm">
+                        <i class="bi bi-arrow-left me-1"></i> Back
+                    </a>
+                @endisset
+                @isset($actionRoute, $actionLabel)
+                    <a href="{{ $actionRoute }}" class="btn btn-light text-primary fw-bold btn-sm px-3 rounded-pill shadow-sm">
+                        <i class="bi bi-plus-lg me-1"></i> {{ $actionLabel }}
+                    </a>
+                @endisset
+            </div>
+        @endif
     </div>
 </div>

@@ -15,6 +15,47 @@ use Illuminate\Http\Request;
 
 class ContentController extends Controller
 {
+    public function hero()
+    {
+        $slides = SiteSetting::decodeValue('hero_slides', SiteSetting::query()->where('key', 'hero_slides')->value('value'));
+        if (! is_array($slides) || empty($slides)) {
+            $slides = [];
+        }
+
+        return Helper::success(200, null, [
+            'kicker' => SiteSetting::query()->where('key', 'hero_kicker')->value('value') ?: 'Start Donating Poor People',
+            'title' => SiteSetting::query()->where('key', 'hero_title')->value('value') ?: SiteSetting::query()->where('key', 'hero_line1')->value('value') ?: 'Celebrate',
+            'subtitle' => SiteSetting::query()->where('key', 'hero_subtitle')->value('value') ?: SiteSetting::query()->where('key', 'hero_line2')->value('value') ?: 'our everyday essentials',
+            'primary_label' => SiteSetting::query()->where('key', 'hero_primary_label')->value('value') ?: 'Discover More',
+            'primary_href' => SiteSetting::query()->where('key', 'hero_primary_href')->value('value') ?: '/about-us',
+            'secondary_label' => SiteSetting::query()->where('key', 'hero_secondary_label')->value('value') ?: 'Get A Quote',
+            'secondary_href' => SiteSetting::query()->where('key', 'hero_secondary_href')->value('value') ?: '/contact',
+            'slides' => array_values(array_map(function ($slide) {
+                $image = $slide['image'] ?? '';
+                if ($image !== '' && !str_starts_with($image, 'http')) {
+                    $image = asset('storage/' . ltrim($image, '/'));
+                }
+                return [
+                    'image' => $image,
+                    'alt' => $slide['alt'] ?? 'hero-slide',
+                ];
+            }, $slides)),
+        ]);
+    }
+
+    public function about()
+    {
+        $stats = SiteSetting::decodeValue('home_about_stats', SiteSetting::query()->where('key', 'home_about_stats')->value('value'));
+        
+        return Helper::success(200, null, [
+            'title' => SiteSetting::query()->where('key', 'home_about_title')->value('value') ?: 'ABOUT BDHRP',
+            'body' => SiteSetting::query()->where('key', 'home_about_body')->value('value') ?: 'Founded in 2007...',
+            'more_label' => SiteSetting::query()->where('key', 'home_about_more_label')->value('value') ?: 'more about us',
+            'more_href' => SiteSetting::query()->where('key', 'home_about_more_href')->value('value') ?: '/about-us',
+            'stats' => is_array($stats) ? $stats : [],
+        ]);
+    }
+
     /**
      * Combined payload for the public React app: copy, menus, JSON blocks, and page navigation.
      */
