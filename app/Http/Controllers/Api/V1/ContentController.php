@@ -13,6 +13,7 @@ use App\Models\SiteSetting;
 use App\Models\Tag;
 use App\Models\Video;
 use App\Models\District;
+use App\Models\Topic;
 use Illuminate\Http\Request;
 
 class ContentController extends Controller
@@ -65,7 +66,7 @@ class ContentController extends Controller
         $menus = [
             'about' => $this->menuPayload('about'),
             'join_us' => $this->menuPayload('join_us'),
-            'topics' => $this->menuPayload('topics'),
+            'topics' => $this->dynamicTopics(),
         ];
 
         $pages = Page::query()->inNavigation()->get();
@@ -325,6 +326,38 @@ class ContentController extends Controller
                 return array_merge($l, ['image' => $img]);
             }, is_array($district->landmarks) ? $district->landmarks : []),
         ]);
+    }
+
+    public function topics()
+    {
+        return Helper::success(200, null, ['items' => $this->dynamicTopics()]);
+    }
+
+    public function topic(string $slug)
+    {
+        $topic = Topic::where('slug', $slug)->where('is_active', true)->firstOrFail();
+        return Helper::success(200, null, [
+            'id' => $topic->id,
+            'title' => $topic->title,
+            'slug' => $topic->slug,
+            'description' => $topic->description,
+            'image' => $this->storageUrl($topic->image),
+        ]);
+    }
+
+    private function dynamicTopics(): array
+    {
+        return Topic::where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderBy('title')
+            ->get()
+            ->map(fn($t) => [
+                'id' => $t->id,
+                'label' => $t->title,
+                'href' => '/topic/' . $t->slug,
+                'slug' => $t->slug,
+            ])
+            ->all();
     }
 
     private function transformArticle(Article $a): array

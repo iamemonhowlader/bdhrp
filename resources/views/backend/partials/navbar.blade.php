@@ -60,6 +60,12 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('admin/topics*') ? 'active' : '' }}" href="{{ route('admin.topics.index', [], false) }}">
+                        <i class="bi bi-tags nav-icon"></i> Topics Manager
+                    </a>
+                </li>
+
                 <!-- PEOPLE & ORG -->
                 <li class="nav-item">
                     <div class="navbar-heading">Organization</div>
