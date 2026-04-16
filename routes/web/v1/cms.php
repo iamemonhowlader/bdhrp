@@ -17,6 +17,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('about/edit', [AboutController::class, 'edit'])->name('about.edit');
     Route::put('about', [AboutController::class, 'update'])->name('about.update');
 
+    Route::resource('about-sections', \App\Http\Controllers\AboutSectionController::class)->names('about-sections');
     Route::resource('articles', ArticleController::class)->names('articles');
     Route::resource('articles_videos', VideoController::class)->names('articles_videos');
     Route::resource('districts', DistrictController::class)->names('districts');

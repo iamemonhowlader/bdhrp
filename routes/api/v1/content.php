@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function () {
     Route::get('hero', [ContentController::class, 'hero']);
     Route::get('about', [ContentController::class, 'about']);
+    Route::get('about-sections', [ContentController::class, 'aboutSections']);
+    Route::get('about-sections/{slug}', [ContentController::class, 'aboutSection']);
     Route::get('bootstrap', [ContentController::class, 'bootstrap']);
     Route::get('articles', [ContentController::class, 'articles']);
     Route::get('articles/{slug}', [ContentController::class, 'article']);

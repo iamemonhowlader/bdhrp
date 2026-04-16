@@ -59,12 +59,70 @@ class ContentController extends Controller
         ]);
     }
 
+    public function aboutSections()
+    {
+        $sections = \App\Models\AboutSection::where('is_active', true)
+            ->orderBy('sort_order')
+            ->get()
+            ->map(fn($s) => [
+                'id' => $s->id,
+                'label' => $s->label,
+                'title' => $s->title,
+                'slug' => $s->slug,
+                'content' => $s->content,
+                'highlight' => $s->highlight,
+                'title_end' => $s->title_end,
+                'description' => $s->description,
+                'image' => $this->storageUrl($s->image),
+                'additional_images' => array_map(fn($img) => $this->storageUrl($img), is_array($s->additional_images) ? $s->additional_images : []),
+                'image_position' => $s->image_position,
+                'menu_label' => $s->menu_label,
+                'show_in_menu' => $s->show_in_menu,
+            ]);
+
+        return Helper::success(200, null, ['items' => $sections]);
+    }
+
+    public function aboutSection(string $slug)
+    {
+        $s = \App\Models\AboutSection::where('slug', $slug)
+            ->where('is_active', true)
+            ->firstOrFail();
+
+        return Helper::success(200, null, [
+            'id' => $s->id,
+            'label' => $s->label,
+            'title' => $s->title,
+            'slug' => $s->slug,
+            'content' => $s->content,
+            'highlight' => $s->highlight,
+            'title_end' => $s->title_end,
+            'description' => $s->description,
+            'image' => $this->storageUrl($s->image),
+            'additional_images' => array_map(fn($img) => $this->storageUrl($img), is_array($s->additional_images) ? $s->additional_images : []),
+            'image_position' => $s->image_position,
+            'menu_label' => $s->menu_label,
+            'show_in_menu' => $s->show_in_menu,
+        ]);
+    }
+
     public function bootstrap()
     {
         $settings = SiteSetting::allMapped();
+        $aboutSections = \App\Models\AboutSection::where('is_active', true)
+            ->where('show_in_menu', true)
+            ->orderBy('sort_order')
+            ->get()
+            ->map(fn($s) => [
+                'label' => $s->menu_label ?: $s->title,
+                'href' => '/about-us/' . $s->slug,
+                'slug' => $s->slug,
+                'type' => 'dynamic_section'
+            ])
+            ->all();
 
         $menus = [
-            'about' => $this->menuPayload('about'),
+            'about' => array_merge($this->menuPayload('about'), $aboutSections),
             'join_us' => $this->menuPayload('join_us'),
             'topics' => $this->dynamicTopics(),
         ];

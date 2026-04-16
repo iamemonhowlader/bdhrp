@@ -38,7 +38,13 @@
 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.about.*') ? 'active' : '' }}" href="{{ route('admin.about.edit', [], false) }}">
-                        <i class="bi bi-info-square nav-icon"></i> About Section
+                        <i class="bi bi-info-square nav-icon"></i> About Stats
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.about-sections.*') ? 'active' : '' }}" href="{{ route('admin.about-sections.index', [], false) }}">
+                        <i class="bi bi-collection nav-icon"></i> About Sections
                     </a>
                 </li>
 
