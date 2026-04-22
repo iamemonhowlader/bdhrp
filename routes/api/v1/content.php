@@ -23,4 +23,5 @@ Route::prefix('v1')->group(function () {
     Route::get('districts/{slug}', [ContentController::class, 'district']);
     Route::get('topics', [ContentController::class, 'topics']);
     Route::get('topics/{slug}', [ContentController::class, 'topic']);
+    Route::get('team-members', [\App\Http\Controllers\Api\V1\TeamMemberController::class, 'index']);
 });

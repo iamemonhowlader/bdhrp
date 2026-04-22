@@ -90,13 +90,17 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#!" data-bs-toggle="collapse" data-bs-target="#navTeam" aria-expanded="false">
+                    <a class="nav-link {{ request()->routeIs('admin.team-members.*') ? '' : 'collapsed' }}" href="#!" data-bs-toggle="collapse" data-bs-target="#navTeam" aria-expanded="{{ request()->routeIs('admin.team-members.*') ? 'true' : 'false' }}">
                         <i class="bi bi-people nav-icon"></i> Team Center
                     </a>
-                    <div id="navTeam" class="collapse" data-bs-parent="#sideNavbar">
+                    <div id="navTeam" class="collapse {{ request()->routeIs('admin.team-members.*') ? 'show' : '' }}" data-bs-parent="#sideNavbar">
                         <ul class="nav flex-column">
-                            <li class="nav-item"><a class="nav-link" href="#">All Members</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Member Roles</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeIs('admin.team-members.index') ? 'active' : '' }}" href="{{ route('admin.team-members.index', [], false) }}">All Members</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeIs('admin.team-members.create') ? 'active' : '' }}" href="{{ route('admin.team-members.create', [], false) }}">Add Member</a>
+                            </li>
                         </ul>
                     </div>
                 </li>

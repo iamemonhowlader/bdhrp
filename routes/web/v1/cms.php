@@ -22,4 +22,5 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('articles_videos', VideoController::class)->names('articles_videos');
     Route::resource('districts', DistrictController::class)->names('districts');
     Route::resource('topics', TopicController::class)->names('topics');
+    Route::resource('team-members', \App\Http\Controllers\TeamMemberController::class)->names('team-members');
 });
