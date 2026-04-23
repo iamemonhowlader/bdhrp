@@ -78,13 +78,17 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#!" data-bs-toggle="collapse" data-bs-target="#navOrg" aria-expanded="false">
-                        <i class="bi bi-layers nav-icon"></i> Regional Hub
+                    <a class="nav-link {{ request()->routeIs('admin.committees.*') ? '' : 'collapsed' }}" href="#!" data-bs-toggle="collapse" data-bs-target="#navOrg" aria-expanded="{{ request()->routeIs('admin.committees.*') ? 'true' : 'false' }}">
+                        <i class="bi bi-layers nav-icon"></i> Committees
                     </a>
-                    <div id="navOrg" class="collapse" data-bs-parent="#sideNavbar">
+                    <div id="navOrg" class="collapse {{ request()->routeIs('admin.committees.*') ? 'show' : '' }}" data-bs-parent="#sideNavbar">
                         <ul class="nav flex-column">
-                            <li class="nav-item"><a class="nav-link" href="#">Divisions</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Committees</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeIs('admin.committees.index') ? 'active' : '' }}" href="{{ route('admin.committees.index', [], false) }}">All Committees</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeIs('admin.committees.create') ? 'active' : '' }}" href="{{ route('admin.committees.create', [], false) }}">Add Committee</a>
+                            </li>
                         </ul>
                     </div>
                 </li>

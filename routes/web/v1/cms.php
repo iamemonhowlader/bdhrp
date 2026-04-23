@@ -23,4 +23,10 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('districts', DistrictController::class)->names('districts');
     Route::resource('topics', TopicController::class)->names('topics');
     Route::resource('team-members', \App\Http\Controllers\TeamMemberController::class)->names('team-members');
+
+    // Committees
+    Route::resource('committees', \App\Http\Controllers\CommitteeController::class)->names('committees');
+    Route::prefix('committees/{committee}')->name('committees.')->group(function () {
+        Route::resource('members', \App\Http\Controllers\CommitteeMemberController::class)->names('members');
+    });
 });
