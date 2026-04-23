@@ -29,4 +29,11 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::prefix('committees/{committee}')->name('committees.')->group(function () {
         Route::resource('members', \App\Http\Controllers\CommitteeMemberController::class)->names('members');
     });
+
+    // Committee Applications
+    Route::get('committee-applications', [\App\Http\Controllers\Backend\CommitteeApplicationController::class, 'index'])->name('committee-applications.index');
+    Route::get('committee-applications/{application}/pdf', [\App\Http\Controllers\Backend\CommitteeApplicationController::class, 'downloadPdf'])->name('committee-applications.pdf');
+    Route::get('committee-applications/{application}', [\App\Http\Controllers\Backend\CommitteeApplicationController::class, 'show'])->name('committee-applications.show');
+    Route::put('committee-applications/{application}/status', [\App\Http\Controllers\Backend\CommitteeApplicationController::class, 'updateStatus'])->name('committee-applications.update-status');
+    Route::delete('committee-applications/{application}', [\App\Http\Controllers\Backend\CommitteeApplicationController::class, 'destroy'])->name('committee-applications.destroy');
 });

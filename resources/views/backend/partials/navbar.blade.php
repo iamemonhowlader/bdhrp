@@ -89,6 +89,9 @@
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->routeIs('admin.committees.create') ? 'active' : '' }}" href="{{ route('admin.committees.create', [], false) }}">Add Committee</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeIs('admin.committee-applications.index') ? 'active' : '' }}" href="{{ route('admin.committee-applications.index', [], false) }}">Committee Applications</a>
+                            </li>
                         </ul>
                     </div>
                 </li>

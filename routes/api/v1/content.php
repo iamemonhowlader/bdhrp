@@ -26,4 +26,5 @@ Route::prefix('v1')->group(function () {
     Route::get('team-members', [\App\Http\Controllers\Api\V1\TeamMemberController::class, 'index']);
     Route::get('committees', [\App\Http\Controllers\Api\V1\CommitteeController::class, 'index']);
     Route::get('committees/{slug}', [\App\Http\Controllers\Api\V1\CommitteeController::class, 'show']);
+    Route::post('committee-applications', [\App\Http\Controllers\Api\V1\CommitteeApplicationController::class, 'store']);
 });
