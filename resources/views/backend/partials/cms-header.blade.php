@@ -14,7 +14,7 @@
                         <i class="bi bi-arrow-left me-1"></i> Back
                     </a>
                 @endisset
-                @isset($actionRoute, $actionLabel)
+                @isset($actionRoute,$actionLabel)
                     <a href="{{ $actionRoute }}" class="btn btn-light text-primary fw-bold btn-sm px-3 rounded-pill shadow-sm">
                         <i class="bi bi-plus-lg me-1"></i> {{ $actionLabel }}
                     </a>
