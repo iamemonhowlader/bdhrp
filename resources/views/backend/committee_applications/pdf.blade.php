@@ -7,357 +7,499 @@
 
 body {
     font-family: 'notobengali', 'dejavusans', sans-serif;
-    font-size: 9pt;
+    font-size: 10pt;
     color: #111;
-    line-height: 1.5;
+    line-height: 1.4;
+    background: white;
+}
+
+/* ======= PAGE LAYOUT ======= */
+.page {
+    padding: 20px;
+    max-width: 210mm;
+    margin: 0 auto;
 }
 
 /* ======= HEADER ======= */
-.header-wrap {
+.header {
     text-align: center;
-    border-bottom: 3px double #006039;
-    padding-bottom: 8px;
-    margin-bottom: 10px;
+    border-bottom: 2px solid #006039;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    position: relative;
 }
-.org-logo {
-    font-size: 15pt;
+.org {
+    font-size: 16pt;
     font-weight: bold;
     color: #006039;
+    margin-bottom: 5px;
 }
-.org-sub {
-    font-size: 8.5pt;
+.sub {
+    font-size: 9pt;
     color: #444;
-    margin-top: 2px;
+    margin-bottom: 5px;
 }
-.doc-title {
-    font-size: 12pt;
+.reg-no {
+    font-size: 8.5pt;
+    color: #666;
+    font-weight: bold;
+}
+.title {
+    font-size: 14pt;
     font-weight: bold;
     color: #111;
-    margin-top: 6px;
+    margin-top: 15px;
+    padding: 8px;
+    background: #f0faf4;
+    border: 2px solid #006039;
+    text-align: center;
     text-decoration: underline;
     letter-spacing: 0.5px;
 }
-.doc-date {
-    font-size: 8pt;
-    color: #555;
-    margin-top: 2px;
-}
 
-/* ======= INFO TABLE ======= */
-table.info-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 10px;
+/* ======= INFO BOX ======= */
+.info-box {
+    border: 2px solid #006039;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background: #fafafa;
 }
-table.info-table td {
-    padding: 4px 7px;
-    font-size: 8.5pt;
-    border: 1px solid #ccc;
+.info-row {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
 }
-table.info-table td.label {
-    background: #f0faf4;
+.info-row:last-child {
+    border-bottom: none;
+}
+.info-col {
+    flex: 1;
+    padding: 8px 12px;
+    display: flex;
+    border-right: 1px solid #e0e0e0;
+}
+.info-col:last-child {
+    border-right: none;
+}
+.info-label {
     font-weight: bold;
-    width: 20%;
     color: #006039;
+    min-width: 80px;
+    font-size: 9pt;
 }
-table.info-table td.value {
-    width: 30%;
+.info-value {
+    color: #111;
+    border-bottom: 1px dotted #666;
+    flex: 1;
+    margin-left: 8px;
+    min-height: 14px;
 }
 
-/* ======= SECTION HEADER ======= */
-.section-bar {
+/* ======= TABLE CONTAINER ======= */
+.table-container {
+    border: 2px solid #006039;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+/* ======= TABLE HEADER ======= */
+.table-header {
     background: #006039;
-    color: #fff;
+    color: white;
+    display: flex;
     font-weight: bold;
-    font-size: 9.5pt;
-    padding: 5px 10px;
+    font-size: 9pt;
+}
+.col-id { width: 6%; padding: 8px 4px; text-align: center; border-right: 1px solid #004d2e; }
+.col-photo { width: 8%; padding: 8px 4px; text-align: center; border-right: 1px solid #004d2e; }
+.col-info { width: 40%; padding: 8px 6px; text-align: center; border-right: 1px solid #004d2e; }
+.col-role { width: 12%; padding: 8px 4px; text-align: center; border-right: 1px solid #004d2e; }
+.col-blood { width: 8%; padding: 8px 4px; text-align: center; border-right: 1px solid #004d2e; }
+.col-sign { width: 18%; padding: 8px 4px; text-align: center; }
+
+/* ======= TABLE ROWS ======= */
+.row {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+    background: white;
+}
+.row:last-child {
+    border-bottom: none;
+}
+.row:nth-child(even) {
+    background: #f8f8f8;
+}
+.row td {
+    font-size: 8pt;
+    padding: 6px 4px;
+    border-right: 1px solid #e0e0e0;
+    vertical-align: top;
+}
+.row td:last-child {
+    border-right: none;
+}
+
+/* ======= MEMBER INFO ======= */
+.member-info {
+    display: flex;
+    margin-bottom: 2px;
+    line-height: 1.2;
+}
+.member-label {
+    font-weight: bold;
+    color: #006039;
+    min-width: 50px;
+    font-size: 7.5pt;
+}
+.member-value {
+    color: #111;
+    flex: 1;
+    font-size: 7.5pt;
+}
+
+/* ======= PHOTO & SIGNATURE ======= */
+.photo-placeholder, .sign-placeholder {
+    width: 30px;
+    height: 35px;
+    border: 1px solid #ccc;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6pt;
+    color: #666;
+    margin: 0 auto;
+}
+.sign-placeholder {
+    width: 45px;
+    height: 25px;
+    border-bottom: 1px solid #666;
+    background: transparent;
+}
+
+/* ======= PAYMENT SECTION ======= */
+.payment-section {
+    border: 2px solid #006039;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #fafafa;
+}
+.payment-title {
+    font-weight: bold;
+    color: #006039;
+    font-size: 10pt;
+    margin-bottom: 8px;
+    text-align: center;
+    border-bottom: 1px solid #006039;
+    padding-bottom: 5px;
+}
+.payment-row {
+    display: flex;
+    margin-bottom: 5px;
+}
+.payment-row:last-child {
     margin-bottom: 0;
 }
 
-/* ======= MEMBERS TABLE ======= */
-table.members {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 12px;
-}
-table.members thead tr {
-    background: #006039;
-    color: #fff;
-}
-table.members thead th {
-    padding: 5px 5px;
-    font-size: 8pt;
-    text-align: center;
-    border: 1px solid #004d2e;
-    font-weight: bold;
-}
-table.members tbody tr:nth-child(even) { background: #f0faf4; }
-table.members tbody tr:nth-child(odd)  { background: #ffffff; }
-table.members tbody td {
-    padding: 4px 5px;
-    font-size: 8pt;
-    border: 1px solid #c8e6d6;
-    vertical-align: middle;
-    text-align: center;
-}
-table.members tbody td.left { text-align: left; }
-table.members tbody td.role { color: #006039; font-weight: bold; text-align: left; }
-table.members tbody td.name { font-weight: bold; text-align: left; }
-table.members .photo-box {
-    width: 32px;
-    height: 38px;
-    border: 1px solid #ccc;
-    background: #f3f4f6;
-    display: inline-block;
-    overflow: hidden;
-}
-table.members .photo-box img {
-    width: 32px;
-    height: 38px;
-    object-fit: cover;
-}
-table.members .sig-box {
-    width: 50px;
-    height: 22px;
-    border-bottom: 1px solid #555;
-    display: inline-block;
-    overflow: hidden;
-}
-table.members .sig-box img {
-    width: 50px;
-    height: 22px;
-    object-fit: contain;
-}
-
-/* ======= BOTTOM SECTION ======= */
-table.bottom-wrap {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 12px;
-}
-
-/* --- Fee Box --- */
-table.fee-table {
-    width: 100%;
-    border-collapse: collapse;
+/* ======= SIGNATURE SECTION ======= */
+.signature-section {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
     border: 2px solid #006039;
-    border-radius: 4px;
+    border-radius: 5px;
+    padding: 15px;
+    background: #fafafa;
 }
-table.fee-table thead th {
-    background: #006039;
-    color: #fff;
-    padding: 5px 8px;
-    font-size: 9pt;
-    font-weight: bold;
-}
-table.fee-table tbody td {
-    padding: 4px 8px;
-    font-size: 8.5pt;
-    border-bottom: 1px solid #d1fae5;
-}
-table.fee-table tbody td.amount {
-    text-align: right;
-    font-weight: bold;
-}
-table.fee-table tfoot td {
-    padding: 6px 8px;
-    font-size: 10pt;
-    font-weight: bold;
-    color: #006039;
-    border-top: 2px solid #006039;
-}
-table.fee-table tfoot td.amount {
-    text-align: right;
-}
-
-/* --- Signature Area --- */
-table.sig-area {
-    width: 100%;
-    border-collapse: collapse;
-}
-table.sig-area td {
-    width: 33%;
+.signature-box {
+    flex: 1;
     text-align: center;
-    padding: 4px 10px;
-    vertical-align: bottom;
 }
-.sig-line {
-    border-top: 1px solid #333;
-    padding-top: 3px;
-    font-size: 8pt;
+.signature-text {
+    font-size: 9pt;
     color: #444;
+    margin-bottom: 20px;
 }
-
-/* ======= STATUS BADGE ======= */
-.badge-pending  { background: #f59e0b; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 7.5pt; font-weight: bold; }
-.badge-approved { background: #22c55e; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 7.5pt; font-weight: bold; }
-.badge-rejected { background: #ef4444; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 7.5pt; font-weight: bold; }
+.signature-line {
+    border-top: 1px solid #333;
+    height: 30px;
+    margin-bottom: 5px;
+}
 
 /* ======= FOOTER ======= */
 .footer {
-    margin-top: 14px;
-    border-top: 1px solid #ccc;
-    padding-top: 4px;
-    text-align: center;
-    font-size: 7pt;
-    color: #999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid #006039;
+    padding-top: 10px;
+    font-size: 8pt;
+    color: #666;
 }
+.footer-left { text-align: left; }
+.footer-center { text-align: center; font-weight: bold; }
+.footer-right { text-align: right; }
+
+/* ======= STATUS BADGE ======= */
+.status-badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 7.5pt;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.status-pending { background: #fef3c7; color: #92400e; border: 1px solid #f59e0b; }
+.status-approved { background: #d1fae5; color: #065f46; border: 1px solid #22c55e; }
+.status-rejected { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
 </style>
 </head>
 <body>
 
+<div class="page">
+
+{{-- ===== DEBUG INFO (REMOVE IN PRODUCTION) ===== --}}
+{{-- @dump($application) --}}
+
 {{-- ===== HEADER ===== --}}
-<div class="header-wrap">
-    <div class="org-logo">Bangladesh Human Rights Protection Council (BDHRP)</div>
-    <div class="org-sub">বাংলাদেশ মানবাধিকার সুরক্ষা পরিষদ &bull; নিবন্ধন নং: ——</div>
-    <div class="doc-title">কমিটির পদ বিন্যাস ও সদস্য তালিকা</div>
-    <div class="doc-date">তারিখ: {{ $application->created_at->format('d F, Y') }}</div>
+<div class="header">
+    <div class="org">বাংলাদেশ মানবাধিকার পরিষদ</div>
+    <div class="sub">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার কর্তৃক অনুমোদিত ও স্বীকৃতি প্রাপ্ত</div>
+    <div class="reg-no">গভঃ রেজিঃ নং-ম-০৮১০২/০৭</div>
+    <div class="title">
+        @if(!empty($application->committee_type))
+            @switch($application->committee_type)
+                @case('union')
+                    ইউনিয়ন কমিটি সদস্য ফরম
+                    @break
+                @case('ward')
+                    ওয়ার্ড কমিটি সদস্য ফরম
+                    @break
+                @case('city')
+                    সিটি কমিটি সদস্য ফরম
+                    @break
+                @case('thana')
+                    থানা কমিটি সদস্য ফরম
+                    @break
+                @case('district')
+                    জেলা কমিটি সদস্য ফরম
+                    @break
+                @default
+                    কমিটি সদস্য ফরম
+            @endswitch
+        @else
+            কমিটি সদস্য ফরম
+        @endif
+    </div>
 </div>
 
-{{-- ===== COMMITTEE INFO ===== --}}
-<table class="info-table">
-    <tr>
-        <td class="label">কমিটির ধরন</td>
-        <td class="value">{{ $application->committee_type }}</td>
-        <td class="label">বিভাগ</td>
-        <td class="value">{{ $application->division ?? '—' }}</td>
-    </tr>
-    <tr>
-        <td class="label">জেলা</td>
-        <td class="value">{{ $application->district ?? '—' }}</td>
-        <td class="label">উপজেলা / থানা</td>
-        <td class="value">{{ $application->thana ?? '—' }}</td>
-    </tr>
-    <tr>
-        <td class="label">ইউনিয়ন</td>
-        <td class="value">{{ $application->union ?? '—' }}</td>
-        <td class="label">ওয়ার্ড</td>
-        <td class="value">{{ $application->ward ?? '—' }}</td>
-    </tr>
-    <tr>
-        <td class="label">পৌরসভা</td>
-        <td class="value">{{ $application->pouroshova ?? '—' }}</td>
-        <td class="label">গ্রাম / এলাকা</td>
-        <td class="value">{{ $application->area ?? '—' }}</td>
-    </tr>
-    <tr>
-        <td class="label">মোট সদস্য</td>
-        <td class="value">{{ count($application->members ?? []) }} জন</td>
-        <td class="label">আবেদনের স্থিতি</td>
-        <td class="value">
-            <span class="badge-{{ $application->status }}">{{ strtoupper($application->status) }}</span>
-        </td>
-    </tr>
-</table>
+{{-- ===== LOCATION INFORMATION ===== --}}
+<div class="info-box">
+    <div class="info-row">
+        <div class="info-col">
+            <span class="info-label">গ্রাম/এলাকা:</span>
+            <span class="info-value">{{ $application->area ?? '' }}</span>
+        </div>
+        <div class="info-col">
+            <span class="info-label">ওয়ার্ড:</span>
+            <span class="info-value">{{ $application->ward ?? '' }}</span>
+        </div>
+    </div>
+    <div class="info-row">
+        <div class="info-col">
+            <span class="info-label">ইউনিয়ন:</span>
+            <span class="info-value">{{ $application->union ?? '' }}</span>
+        </div>
+        <div class="info-col">
+            <span class="info-label">থানা:</span>
+            <span class="info-value">{{ $application->thana ?? '' }}</span>
+        </div>
+    </div>
+    <div class="info-row">
+        <div class="info-col">
+            <span class="info-label">জেলা:</span>
+            <span class="info-value">{{ $application->district ?? '' }}</span>
+        </div>
+        <div class="info-col">
+            <span class="info-label">বিভাগ:</span>
+            <span class="info-value">{{ $application->division ?? '' }}</span>
+        </div>
+    </div>
+</div>
 
-{{-- ===== MEMBERS TABLE ===== --}}
-<div class="section-bar">কমিটির সদস্য তালিকা</div>
-<table class="members">
-    <thead>
-        <tr>
-            <th style="width:4%">#</th>
-            <th style="width:5%">ছবি</th>
-            <th style="width:15%">পদবি</th>
-            <th style="width:16%">পূর্ণ নাম</th>
-            <th style="width:13%">পিতার নাম</th>
-            <th style="width:11%">NID নং</th>
-            <th style="width:10%">ফোন</th>
-            <th style="width:7%">রক্তের গ্রুপ</th>
-            <th style="width:11%">সদস্য আইডি</th>
-            <th style="width:8%">স্বাক্ষর</th>
-        </tr>
-    </thead>
-    <tbody>
-        @php $serial = 1; @endphp
-        @foreach ($application->members ?? [] as $member)
-        <tr>
-            <td>{{ $serial++ }}</td>
-            <td>
+{{-- ===== COMMITTEE MEMBERS TABLE ===== --}}
+<div class="table-container">
+    <div class="table-header">
+        <div class="col-id">ক্রমিক</div>
+        <div class="col-photo">ছবি</div>
+        <div class="col-info">সদস্যের বিবরণ</div>
+        <div class="col-role">পদবী</div>
+        <div class="col-blood">রক্ত</div>
+        <div class="col-sign">স্বাক্ষর</div>
+    </div>
+
+    {{-- Member Rows --}}
+    @php $serial = 1; @endphp
+    @foreach ($application->members ?? [] as $member)
+        <div class="row">
+            <div class="col-id">{{ $serial++ }}</div>
+
+            <div class="col-photo">
                 @if (!empty($member['photo']))
-                    <div class="photo-box"><img src="{{ $member['photo'] }}" /></div>
+                    <div class="photo-placeholder">
+                        <img src="{{ $member['photo'] }}" style="width: 30px; height: 35px; object-fit: cover;" />
+                    </div>
                 @else
-                    <div class="photo-box" style="font-size:6pt;line-height:38px;color:#aaa;">N/A</div>
+                    <div class="photo-placeholder">ছবি</div>
                 @endif
-            </td>
-            <td class="role">{{ $member['role'] ?? '—' }}</td>
-            <td class="name">{{ $member['name'] ?? '—' }}</td>
-            <td class="left">{{ $member['father'] ?? '—' }}</td>
-            <td>{{ $member['nid'] ?? '—' }}</td>
-            <td>{{ $member['phone'] ?? '—' }}</td>
-            <td>{{ $member['bloodGroup'] ?? '—' }}</td>
-            <td style="font-size:7pt;">{{ $member['memberId'] ?? '—' }}</td>
-            <td>
-                @if (!empty($member['signatureImage']))
-                    <div class="sig-box"><img src="{{ $member['signatureImage'] }}" /></div>
-                @elseif (!empty($member['digitalSignature']))
-                    <div class="sig-box"><img src="{{ $member['digitalSignature'] }}" /></div>
-                @else
-                    <div class="sig-box"></div>
-                @endif
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+            </div>
 
-{{-- ===== BOTTOM: SIGNATURE + FEE ===== --}}
-<table class="bottom-wrap">
-<tr>
-    <td style="width:60%;vertical-align:bottom;padding-right:12px;">
-        <table class="sig-area">
-            <tr>
-                <td>
-                    <div style="height:40px;"></div>
-                    <div class="sig-line">আবেদনকারীর স্বাক্ষর</div>
-                </td>
-                <td>
-                    <div style="height:40px;"></div>
-                    <div class="sig-line">যাচাইকারীর স্বাক্ষর</div>
-                </td>
-                <td>
-                    <div style="height:40px;"></div>
-                    <div class="sig-line">অনুমোদনকারীর স্বাক্ষর ও সিল</div>
-                </td>
-            </tr>
-        </table>
-    </td>
-    <td style="width:40%;vertical-align:top;">
-        @php
-            $roleCount = collect($application->members ?? [])->groupBy('role');
-            $fees = [
-                'সভাপতি'       => 20000,
-                'সেক্রেটারি'   => 15000,
-                'সহ-সভাপতি'    => 10000,
-                'সহ-সেক্রেটারি'=> 8000,
-                'সদস্য'        => 5000,
-            ];
-        @endphp
-        <table class="fee-table">
-            <thead>
-                <tr><th colspan="2">ফি সারসংক্ষেপ</th></tr>
-            </thead>
-            <tbody>
-                @foreach($roleCount as $role => $members)
-                <tr>
-                    <td>{{ $role }} ({{ count($members) }}জন)</td>
-                    <td class="amount">৳ {{ number_format(($fees[$role] ?? 3000) * count($members)) }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td>সর্বমোট</td>
-                    <td class="amount">৳ {{ number_format($application->total_fee, 0) }}</td>
-                </tr>
-            </tfoot>
-        </table>
-    </td>
-</tr>
-</table>
+            <div class="col-info">
+                <div class="member-info">
+                    <span class="member-label">নাম:</span>
+                    <span class="member-value"> {{ $member['name'] ?? '' }}</span>
+                </div>
+                <div class="member-info">
+                    <span class="member-label">পিতা:</span>
+                    <span class="member-value"> {{ $member['father'] ?? '' }}</span>
+                </div>
+                <div class="member-info">
+                    <span class="member-label">মাতা:</span>
+                    <span class="member-value"> {{ $member['mother'] ?? '' }}</span>
+                </div>
+                <div class="member-info">
+                    <span class="member-label">ঠিকানা:</span>
+                    <span class="member-value"> {{ $member['address'] ?? '' }}</span>
+                </div>
+                <div class="member-info">
+                    <span class="member-label">NID:</span>
+                    <span class="member-value"> {{ $member['nid'] ?? '' }}</span>
+                </div>
+                <div class="member-info">
+                    <span class="member-label">মোবাইল:</span>
+                    <span class="member-value"> {{ $member['phone'] ?? '' }}</span>
+                </div>
+                <div class="member-info">
+                    <span class="member-label">রক্তের গ্রুপ:</span>
+                    <span class="member-value"> {{ $member['bloodGroup'] ?? '' }}</span>
+                </div>
+                <div class="member-info">
+                    <span class="member-label">সদস্য আইডি:</span>
+                    <span class="member-value"> {{ $member['memberId'] ?? '' }}</span>
+                </div>
+            </div>
+
+            <div class="col-role">{{ $member['role'] ?? '' }}</div>
+            <div class="col-blood">{{ $member['bloodGroup'] ?? '' }}</div>
+
+            <div class="col-sign">
+                @if (!empty($member['signatureImage']))
+                    <div class="sign-placeholder">
+                        <img src="{{ $member['signatureImage'] }}" style="width: 45px; height: 25px; object-fit: contain;" />
+                    </div>
+                @elseif (!empty($member['digitalSignature']))
+                    <div class="sign-placeholder">
+                        <img src="{{ $member['digitalSignature'] }}" style="width: 45px; height: 25px; object-fit: contain;" />
+                    </div>
+                @else
+                    <div class="sign-placeholder">স্বাক্ষর</div>
+                @endif
+            </div>
+        </div>
+    @endforeach
+
+    {{-- Empty rows if no members --}}
+    @if(empty($application->members))
+        @for($i = 1; $i <= 5; $i++)
+            <div class="row">
+                <div class="col-id">{{ $i }}</div>
+                <div class="col-photo">
+                    <div class="photo-placeholder">ছবি</div>
+                </div>
+                <div class="col-info">
+                    <div class="member-info">
+                        <span class="member-label">নাম:</span>
+                        <span class="member-value"> _________________________</span>
+                    </div>
+                    <div class="member-info">
+                        <span class="member-label">পিতা:</span>
+                        <span class="member-value"> _________________________</span>
+                    </div>
+                    <div class="member-info">
+                        <span class="member-label">মাতা:</span>
+                        <span class="member-value"> _________________________</span>
+                    </div>
+                    <div class="member-info">
+                        <span class="member-label">ঠিকানা:</span>
+                        <span class="member-value"> _________________________</span>
+                    </div>
+                    <div class="member-info">
+                        <span class="member-label">NID:</span>
+                        <span class="member-value"> _________________________</span>
+                    </div>
+                    <div class="member-info">
+                        <span class="member-label">মোবাইল:</span>
+                        <span class="member-value"> _________________________</span>
+                    </div>
+                    <div class="member-info">
+                        <span class="member-label">রক্তের গ্রুপ:</span>
+                        <span class="member-value"> ___________________</span>
+                    </div>
+                    <div class="member-info">
+                        <span class="member-label">পেশা:</span>
+                        <span class="member-value"> _________________________</span>
+                    </div>
+                </div>
+                <div class="col-role">_________________</div>
+                <div class="col-blood">_________________</div>
+                <div class="col-sign">
+                    <div class="sign-placeholder">স্বাক্ষর</div>
+                </div>
+            </div>
+        @endfor
+    @endif
+</div>
+
+{{-- ===== PAYMENT INFORMATION ===== --}}
+@if(!empty($application->total_fee))
+<div class="payment-section">
+    <div class="payment-title">পেমেন্ট তথ্য</div>
+    <div class="payment-row">
+        <div class="info-col">
+            <span class="info-label">মোট ফি:</span>
+            <span class="info-value">৳{{ number_format($application->total_fee, 2) }}</span>
+        </div>
+        <div class="info-col">
+            <span class="info-label">আবেদনের স্থিতি:</span>
+            <span class="info-value">
+                <span class="status-badge status-{{ $application->status ?? 'pending' }}">{{ strtoupper($application->status ?? 'pending') }}</span>
+            </span>
+        </div>
+    </div>
+</div>
+@endif
+
+{{-- ===== SIGNATURE SECTION ===== --}}
+<div class="signature-section">
+    <div class="signature-box">
+        <div class="signature-text">সভাপতি</div>
+        <div class="signature-line"></div>
+        <div class="signature-text">বাংলাদেশ মানবাধিকার পরিষদ</div>
+    </div>
+    <div class="signature-box">
+        <div class="signature-text">সাধারণ সম্পাদক</div>
+        <div class="signature-line"></div>
+        <div class="signature-text">বাংলাদেশ মানবাধিকার পরিষদ</div>
+    </div>
+</div>
 
 {{-- ===== FOOTER ===== --}}
 <div class="footer">
-    এই নথিটি BDHRP অফিসিয়াল সিস্টেম কর্তৃক স্বয়ংক্রিয়ভাবে তৈরি &bull; আবেদন আইডি: #{{ $application->id }} &bull; {{ now()->format('d/m/Y H:i') }}
+    <div class="footer-left">Serial No: #{{ $application->id ?? 'N/A' }}</div>
+    <div class="footer-center">Page 1</div>
+    <div class="footer-right">তারিখ: {{ $application->created_at ? $application->created_at->format('d F, Y') : now()->format('d F, Y') }}</div>
+</div>
+
 </div>
 
 </body>

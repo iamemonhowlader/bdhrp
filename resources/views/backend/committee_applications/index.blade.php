@@ -19,7 +19,7 @@
 <div id="app-content">
     <div class="app-content-area">
         <div class="container-fluid px-4 pt-4 pb-5">
-            
+
             <div class="mb-4">
                 <h1 class="fw-bold">Committee Applications</h1>
                 <p class="text-muted">Manage and review committee formation requests.</p>
@@ -77,16 +77,13 @@
                                                 <i class="bi bi-eye"></i>
                                             </a>
 
-                                            {{-- PDF Preview & Download --}}
-                                            <button type="button"
-                                                class="action-btn text-danger border-danger"
-                                                title="PDF দেখুন ও ডাউনলোড করুন"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#pdfPreviewModal"
-                                                data-pdf-url="{{ route('admin.committee-applications.pdf', $app) }}"
-                                                data-pdf-name="{{ $app->committee_type }} - {{ $app->district }}">
+                                            {{-- PDF Download --}}
+                                            <a href="{{ route('admin.committee-applications.pdf', $app) }}?inline=1"
+                                               class="action-btn text-danger border-danger"
+                                               title="PDF দেখুন ও ডাউনলোড করুন"
+                                               target="_blank">
                                                 <i class="bi bi-file-earmark-pdf-fill"></i>
-                                            </button>
+                                            </a>
 
                                             {{-- Delete --}}
                                             <form action="{{ route('admin.committee-applications.destroy', $app) }}" method="POST" class="d-inline">
@@ -119,57 +116,8 @@
 
         </div>
     </div>
-</div>
-
-{{-- PDF Preview Modal --}}
-<div class="modal fade" id="pdfPreviewModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
-        <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
-            <div class="modal-header bg-danger text-white border-0 px-4 py-3">
-                <h5 class="modal-title fw-bold" id="pdfModalLabel">
-                    <i class="bi bi-file-earmark-pdf-fill me-2"></i>
-                    <span id="pdfModalName">PDF প্রিভিউ</span>
-                </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-3 bg-gray-100" style="background:#f3f4f6;">
-                <iframe id="pdfFrame" src="" title="PDF Preview"></iframe>
-            </div>
-            <div class="modal-footer border-0 px-4 py-3">
-                <a id="pdfDownloadBtn"
-                   href="#"
-                   class="btn btn-danger rounded-pill px-5 fw-bold"
-                   download>
-                    <i class="bi bi-download me-2"></i> PDF ডাউনলোড করুন
-                </a>
-                <button type="button" class="btn btn-light rounded-pill px-5" data-bs-dismiss="modal">বন্ধ করুন</button>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+</div>@endsection
 
 @push('scripts')
-<script>
-    const pdfModal = document.getElementById('pdfPreviewModal');
-    pdfModal.addEventListener('show.bs.modal', function (event) {
-        const btn = event.relatedTarget;
-        const pdfUrl = btn.getAttribute('data-pdf-url');
-        const pdfName = btn.getAttribute('data-pdf-name');
-
-        // Set iframe src (stream/view the PDF inline)
-        document.getElementById('pdfFrame').src = pdfUrl + '?inline=1';
-        document.getElementById('pdfModalName').textContent = pdfName;
-
-        // Set download link
-        const downloadBtn = document.getElementById('pdfDownloadBtn');
-        downloadBtn.href = pdfUrl;
-        downloadBtn.setAttribute('download', pdfName + '.pdf');
-    });
-
-    pdfModal.addEventListener('hide.bs.modal', function () {
-        // Clear iframe on close to stop loading
-        document.getElementById('pdfFrame').src = '';
-    });
-</script>
+{{-- Modal JavaScript removed since we're opening PDF directly --}}
 @endpush

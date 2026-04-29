@@ -24,7 +24,8 @@ class CommitteeApplicationController extends Controller
 
     public function downloadPdf(CommitteeApplication $application, Request $request)
     {
-        $html = view('backend.committee_applications.pdf', compact('application'))->render();
+        // Use the final working template
+        $html = view('backend.committee_applications.pdf_final', compact('application'))->render();
 
         $defaultConfig = (new ConfigVariables())->getDefaults();
         $fontDirs = $defaultConfig['fontDir'];
