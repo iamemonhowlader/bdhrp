@@ -55,7 +55,7 @@
                                         @if($app->union) <small class="text-muted">({{ $app->union }})</small> @endif
                                     </td>
                                     <td>
-                                        <span class="badge bg-light text-dark">{{ count($app->members ?? []) }} Members</span>
+                                        <span class="badge bg-light text-dark">{{ $app->applicationMembers->count() }} Members</span>
                                     </td>
                                     <td>
                                         <span class="fw-bold text-success">{{ number_format($app->total_fee, 2) }} BDT</span>
@@ -77,15 +77,8 @@
                                                 <i class="bi bi-eye"></i>
                                             </a>
 
-                                            {{-- PDF Download --}}
-                                            <a href="{{ route('admin.committee-applications.pdf', $app) }}?inline=1"
-                                               class="action-btn text-danger border-danger"
-                                               title="PDF দেখুন ও ডাউনলোড করুন"
-                                               target="_blank">
-                                                <i class="bi bi-file-earmark-pdf-fill"></i>
-                                            </a>
 
-                                            {{-- Delete --}}
+                                             {{-- Delete --}}
                                             <form action="{{ route('admin.committee-applications.destroy', $app) }}" method="POST" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')

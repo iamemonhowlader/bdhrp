@@ -27,4 +27,9 @@ class CommitteeApplication extends Model
     protected $casts = [
         'members' => 'array',
     ];
+
+    public function applicationMembers()
+    {
+        return $this->hasMany(CommitteeApplicationMember::class);
+    }
 }

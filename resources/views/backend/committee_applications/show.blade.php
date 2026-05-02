@@ -84,16 +84,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($application->members ?? [] as $member)
+                                        @if($application->applicationMembers->count() > 0)
+                                            @foreach($application->applicationMembers as $member)
+                                                <tr>
+                                                    <td class="fw-bold">{{ $member->name ?? 'N/A' }}</td>
+                                                    <td>{{ $member->role ?? 'N/A' }}</td>
+                                                    <td>
+                                                        <small class="d-block">NID: {{ $member->nid ?? 'N/A' }}</small>
+                                                        <small class="d-block">Phone: {{ $member->phone ?? 'N/A' }}</small>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @else
                                             <tr>
-                                                <td class="fw-bold">{{ $member['name'] ?? 'N/A' }}</td>
-                                                <td>{{ $member['role'] ?? 'N/A' }}</td>
-                                                <td>
-                                                    <small class="d-block">NID: {{ $member['nid'] ?? 'N/A' }}</small>
-                                                    <small class="d-block">Phone: {{ $member['phone'] ?? 'N/A' }}</small>
+                                                <td colspan="3" class="text-center text-muted">
+                                                    <em>No committee members found</em>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>

@@ -41,13 +41,18 @@ class CommitteeApplicationController extends Controller
             'margin_bottom' => 15,
             'margin_left'   => 15,
             'margin_right'  => 15,
-            'fontDir'       => array_merge($fontDirs, [storage_path('fonts')]),
+            'fontDir'       => array_merge($fontDirs, [storage_path('fonts'), public_path('fonts')]),
             'fontdata'      => array_merge($fontData, [
                 'notobengali' => [
                     'R' => 'NotoSansBengali-Regular.ttf',
                 ],
+                'solaimanlipi' => [
+                    'R' => 'SolaimanLipi.ttf',
+                ],
             ]),
             'default_font'  => 'notobengali',
+            'autoScriptToLang' => true,
+            'autoLangToFont' => true,
         ]);
 
         $mpdf->SetTitle($application->committee_type . ' কমিটি তালিকা');
