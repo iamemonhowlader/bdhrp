@@ -82,7 +82,7 @@ class FrontendContentSeeder extends Seeder
             'hero_secondary_label' => 'Get A Quote',
             'hero_secondary_href' => '/contact',
             'home_about_title' => 'ABOUT BDHRP',
-            'home_about_body' => 'Founded in 2007, the Bangladesh Human Rights Council is a non-political, voluntary organization approved by the Government of the People’s Republic of Bangladesh. It is committed to protecting human rights and promoting sustainable development throughout Bangladesh. Guided by the charter of the United Nations, the organization is dedicated to eradicating poverty, ensuring social justice, and safeguarding the constitutional rights of every citizen.',
+            'home_about_body' => 'Founded in 2007, the Bangladesh Human Rights Parishad is a non-political, voluntary organization approved by the Government of the People’s Republic of Bangladesh. It is committed to protecting human rights and promoting sustainable development throughout Bangladesh. Guided by the charter of the United Nations, the organization is dedicated to eradicating poverty, ensuring social justice, and safeguarding the constitutional rights of every citizen.',
             'home_about_more_label' => 'more about us',
             'home_about_more_href' => '/about-us',
             'lifestyle_kicker' => 'KNOW ABOUT',

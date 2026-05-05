@@ -37,7 +37,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-8">
                         <span class="badge bg-white text-success mb-3 px-3 py-2 rounded-pill fw-bold small shadow-sm">REGIONAL HUB</span>
-                        <h1 class="display-5 fw-800 mb-2 mt-2">Council Committees</h1>
+                        <h1 class="display-5 fw-800 mb-2 mt-2">Parishad Committees</h1>
                         <p class="fs-5 opacity-90 mb-0">Manage the global network of volunteers and regional committees.</p>
                     </div>
                     <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
@@ -71,7 +71,7 @@
                             <div class="card-body p-4">
                                 <h4 class="fw-800 mb-1">{{ $committee->name }}</h4>
                                 <p class="text-muted small mb-3">Slug: <span class="text-primary fw-bold">{{ $committee->slug }}</span></p>
-                                
+
                                 <div class="d-flex flex-wrap gap-2 mb-4">
                                     @if($committee->contact_email)
                                         <span class="badge bg-light text-dark rounded-pill"><i class="bi bi-envelope me-1"></i> Email</span>

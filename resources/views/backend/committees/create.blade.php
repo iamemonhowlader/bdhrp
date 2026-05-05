@@ -45,13 +45,13 @@
                     <div class="premium-card bg-white p-4 p-md-5">
                         <form action="{{ route('admin.committees.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            
+
                             <div class="row g-4">
                                 <div class="col-md-6">
                                     <label class="form-label">Committee Name</label>
                                     <input type="text" name="name" class="form-control" placeholder="e.g. Barishal Committee" required value="{{ old('name') }}">
                                 </div>
-                                
+
                                 <div class="col-md-6">
                                     <label class="form-label">URL Slug</label>
                                     <input type="text" name="slug" class="form-control" placeholder="e.g. barishal" required value="{{ old('slug') }}">
@@ -82,7 +82,7 @@
                                 <div class="col-md-6">
                                     <label class="form-label">Leadership PDF (Optional)</label>
                                     <input type="file" name="pdf_file" class="form-control" accept=".pdf">
-                                    <small class="text-muted">Upload the Council Leadership List PDF.</small>
+                                    <small class="text-muted">Upload the Parishad Leadership List PDF.</small>
                                 </div>
 
                                 <div class="col-12 mt-4 pt-3 border-top">

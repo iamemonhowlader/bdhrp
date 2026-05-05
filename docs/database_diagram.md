@@ -581,7 +581,7 @@ erDiagram
 | 9 | `article_tags` | Article ↔ Tag pivot |
 | 10 | `topics` | Subject areas — `/topic/:slug` pages |
 | 11 | `article_topics` | Article ↔ Topic pivot |
-| 12 | `divisions` | Geographic divisions (regions for councils) |
+| 12 | `divisions` | Geographic divisions (regions for Parishads) |
 | 13 | `committees` | Local committees per division |
 | 14 | `committee_members` | Leadership: Co-Chair, Secretary, Treasurer |
 | 15 | `committee_events` | Events per committee |

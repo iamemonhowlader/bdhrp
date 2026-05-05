@@ -29,7 +29,7 @@ class CommitteeSeeder extends Seeder
                 ['slug' => Str::slug($name)],
                 [
                     'name' => $name,
-                    'about' => "The {$name} Committee of the BDHRP Council is a vital part of our national volunteer network. Our members help drive the activities of the Council through fundraising, outreach, and local advocacy initiatives tailored to the {$name} division.",
+                    'about' => "The {$name} Committee of the BDHRP Parishad is a vital part of our national volunteer network. Our members help drive the activities of the Parishad through fundraising, outreach, and local advocacy initiatives tailored to the {$name} division.",
                     'image_caption' => "The vibrant community of {$name} where our committee members work to promote human rights.",
                     'contact_email' => strtolower($name) . '@bdhrp.org',
                     'facebook_url' => 'https://facebook.com/bdhrp',
